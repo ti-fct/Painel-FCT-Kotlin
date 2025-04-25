@@ -38,23 +38,27 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(compose.materialIconsExtended)
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-            implementation("io.github.kevinnzou:compose-webview-multiplatform:1.9.40")
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0") // gerenciador de tarefas
+            implementation("io.github.kevinnzou:compose-webview-multiplatform:1.9.40")  // vebview multiplataforma
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
+            implementation(libs.kotlinx.coroutines.swing)
         }
     }
 }
 
 android {
     namespace = "br.ufg"
-    compileSdk = 35
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
+//    compileSdk = 35
 
     defaultConfig {
         applicationId = "br.ufg.painelfct"
-        minSdk = 30
-        targetSdk = 35
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        targetSdk = libs.versions.android.targetSdk.get().toInt()
+//        minSdk = 30
+//        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
     }
